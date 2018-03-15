@@ -9,8 +9,12 @@ const ajaxGet = (restId, menuType, tag, cb) => {
     url: URL,
     contentType: 'application/json',
     success: (result) => {
+      console.log(result);
       cb(result);
     },
+    error: (error) => {
+      console.log(error);
+    }
   });
 };
 

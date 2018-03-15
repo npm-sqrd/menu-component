@@ -7,7 +7,7 @@ class MenuView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restId: this.props.id || 90976,
+      restId: 10000000, // this.props.id || 10000000,
       menuType: 'lunch',
       tag: 'none',
       menuData: [],
@@ -22,6 +22,7 @@ class MenuView extends React.Component {
   fetch() {
     const { restId, menuType, tag } = this.state;
     get(restId, menuType, tag, (result) => {
+      console.log(result);
       this.setState({
         menuData: result,
       });
