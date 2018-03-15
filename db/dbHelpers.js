@@ -22,6 +22,7 @@ const restaurantSchema = mongoose.Schema({
   },
 });
 
+
 const Restaurant = mongoose.model('restaurantMenus', restaurantSchema);
 
 const save = (options, cb) => {
