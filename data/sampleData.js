@@ -7,7 +7,7 @@ const sampleDataGen = (i) => {
   const data = [];
     dataArr.push({
       id: i,
-      name: faker.company.companyName(),
+      name: faker.Company.companyName(),
       menu: {
         lunch: menu.entreeMenuGen(),
         dinner: menu.entreeMenuGen(),
