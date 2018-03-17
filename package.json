@@ -13,7 +13,6 @@
     "build": "./node_modules/.bin/webpack -d --watch",
     "build:prod": "./node_modules/.bin/webpack --config './webpack.prod.config.js'",
     "bundle": "./node_modules/.bin/webpack",
-    "buildData": "time node data/makedata.js",
     "server": "nodemon server.js"
   },
   "jest": {
