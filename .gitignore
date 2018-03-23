@@ -7,3 +7,7 @@ coverage/
 .DS_Store
 testdata.json
 package-lock.json
+dump.rdb
+hello.yml
+newrelic_agent.log
+newrelic.js
