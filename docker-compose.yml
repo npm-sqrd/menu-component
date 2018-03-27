@@ -6,9 +6,6 @@ services:
     command: npm start
     ports:
       - "3500:3500"
-    volumes:
-      - ./src/client/app
-      - /src/client/app/node_modules
     depends_on:
       - "mongo"
       - "redis"
