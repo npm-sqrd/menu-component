@@ -6,7 +6,7 @@ const dbHelpers = require('../../seedDatabase');
 const redis = require('redis');
 
 const REDIS_PORT = process.env.REDIS_PORT || 6379;
-const client = redis.createClient(REDIS_PORT);
+const client = redis.createClient('redis://redis:6379');
 
 http.createServer((req, res) => {
   if (req.url === '/') {
@@ -15,8 +15,18 @@ http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
     });
-  } else if (req.url.match('.js')) {
+  } else if (req.url === '/bundle.js') {
     const bundle = path.join(__dirname, '../public', req.url);
+    const fileStream = fs.createReadStream(bundle, 'UTF-8');
+    res.writeHead(200);
+    fileStream.pipe(res);
+  } else if (req.url === '/app.js') {
+    const bundle = path.join(__dirname, '../../public/app.js');
+    const fileStream = fs.createReadStream(bundle, 'UTF-8');
+    res.writeHead(200);
+    fileStream.pipe(res);
+  } else if (req.url === '/app-server.js') {
+    const bundle = path.join(__dirname, '../../public/app-server.js');
     const fileStream = fs.createReadStream(bundle, 'UTF-8');
     res.writeHead(200);
     fileStream.pipe(res);
@@ -31,11 +41,11 @@ http.createServer((req, res) => {
       query: `menu.${meal}`,
     };
     client.get(redisKey, (err, reply) => {
-      if (reply === null) {
+      if (reply || err === null) {
         dbHelpers.find(queryObj, (error, result) => {
           const menu = result.menu[meal];
           const filteredMenu = menu.filter(item => item.tags === tag);
-          client.setex(redisKey, 10, JSON.stringify(filteredMenu));
+          client.setex(redisKey, 180, JSON.stringify(filteredMenu));
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify(filteredMenu));
         });
@@ -54,9 +64,9 @@ http.createServer((req, res) => {
       query: `menu.${meal}`,
     };
     client.get(redisKey, (err, reply) => {
-      if (reply === null) {
+      if (reply || err === null) {
         dbHelpers.find(queryObj, (err, result) => {
-          client.setex(redisKey, 10, JSON.stringify(result));
+          client.setex(redisKey, 180, JSON.stringify(result));
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify(result.menu[meal]));
         });

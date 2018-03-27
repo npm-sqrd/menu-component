@@ -13,7 +13,7 @@ const ajaxGet = (name, menuType, tag, cb) => {
     },
     error: (error) => {
       cb(error);
-    }
+    },
   });
 };
 

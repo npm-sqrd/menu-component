@@ -1,3 +1,3 @@
 import MenuView from './MenuView.jsx';
 
-export default MenuView;
+window.MenuView = MenuView;

@@ -1,31 +1,55 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const APP_DIR = path.resolve(__dirname + '/src/client');
-const BUILD_DIR = path.resolve(__dirname + '/src/public');
+const common = {
+  context: __dirname + '/src/client',
+};
 
-const config = {
-  entry: APP_DIR + '/app/index.jsx',
+const client = {
+  entry: './app/productionView.js',
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js',
-  },
-  resolve: {
-    extensions: ['.jsx', '.js'],
+    path: __dirname + '/public',
+    filename: 'app.js'
   },
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
-        include: APP_DIR,
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
       },
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-      },
+      test: /\.css$/,
+      loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+    },
     ],
   },
 };
 
-module.exports = config;
+const server = {
+  entry: './app/index.jsx',
+  target: 'node',
+  output: {
+    path: __dirname + '/public',
+    filename: 'app-server.js',
+    libraryTarget: 'commonjs-module'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+      test: /\.css$/,
+      loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+    },
+    ],
+  },
+};
+
+module.exports = [
+  Object.assign({}, common, client),
+  Object.assign({}, common, server)
+];

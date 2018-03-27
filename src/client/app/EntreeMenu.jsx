@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from './MenuItem';
+import MenuItem from './MenuItem.jsx';
 import styles from './styles/EntreeMenuStyles.css';
 
 const EntreeMenu = (props) => {
