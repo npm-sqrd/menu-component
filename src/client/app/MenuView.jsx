@@ -1,13 +1,13 @@
 import React from 'react';
 import get from '../ajaxHelper';
 import styles from './styles/MenuViewStyles.css';
-import MenuSelector from './MenuSelector';
+import MenuSelector from './MenuSelector.jsx';
 
 class MenuView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'possimus10000474', // this.props.id || 10000000,
+      name: 'restaurant10050000', // this.props.id || 10000000,
       menuType: 'lunch',
       tag: 'none',
       menuData: [],

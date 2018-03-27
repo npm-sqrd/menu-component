@@ -4,7 +4,7 @@
   "description": "the menu component for our FEC project",
   "main": "src/server/server.js",
   "scripts": {
-    "start": "node src/server/server.js",
+    "start": "node src/server/nodeserver.js",
     "test": "jest",
     "makeAndSeed": "time node ./data/makeData.js",
     "makeDatabase": "node seedDatabase.js",
@@ -66,10 +66,12 @@
     "mongodb-memory-server": "^1.7.0",
     "mongoose": "^5.0.7",
     "morgan": "^1.9.0",
+    "newrelic": "^3.2.0",
     "nodemon": "^1.15.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "redis": "^2.8.0",
     "style-loader": "^0.20.2"
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EntreeMenu from './EntreeMenu';
-import DessertFilterMenu from './DessertFilterMenu';
+import EntreeMenu from './EntreeMenu.jsx';
+import DessertFilterMenu from './DessertFilterMenu.jsx';
 
 const MenuType = ((props) => {
   if (props.tag === 'none' && props.type !== 'dessert') {

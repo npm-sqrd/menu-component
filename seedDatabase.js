@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/silverspoon';
 
-mongoose.connect('mongodb://localhost/silverspoon');
+mongoose.connect('mongodb://mongo/silverspoon');
 
 const restaurantSchema = mongoose.Schema({
   id: { type: Number, unique: true },
@@ -65,7 +65,7 @@ const save = (options, cb) => {
 
 const find = (options, cb) => {
   const query = options.query || 'menu.lunch';
-  const name = options.name || 'possimus10000474';
+  const name = options.name || 'restaurant15555555';
   if (query === '{}') {
     Restaurant.findOne({ 'name': name }).exec((err, data) => {
       if (err) {

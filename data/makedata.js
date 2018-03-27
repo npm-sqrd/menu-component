@@ -5,11 +5,11 @@ const exec = require('child_process').exec;
 const writeStream = fs.createWriteStream('./testdata.json');
 
 const makeData = (num) => {
-  const command = `mongoimport --db silverspoon --collection restaurantmenus --file testdata.json --numInsertionWorkers 25`;
+  // const command = `mongoimport --db silverspoon --collection restaurantmenus --file testdata.json --numInsertionWorkers 25`;
   let freeSpace = true;
   let index = num;
 
-  while (index < 20000000 && freeSpace) {
+  while (index < 12000000 && freeSpace) {
     freeSpace = writeStream.write(JSON.stringify(sampleData(index)) + '\n');
     index += 1;
   }
@@ -20,7 +20,7 @@ const makeData = (num) => {
   if (index % 100000 === 0) {
     console.log('Just hit', index);
   }
-  if (index < 20000000) {
+  if (index < 12000000) {
     writeStream.once('drain', () => makeData(index));
   }
 };

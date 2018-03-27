@@ -9,7 +9,7 @@ const sampleDataGen = (i) => {
   const data = [];
     dataArr.push({
       id: i,
-      name: faker.lorem.word() + i,
+      name: `restaurant${i}`,
       menu: {
         lunch: menu.entreeMenuGen(),
         dinner: menu.entreeMenuGen(),
