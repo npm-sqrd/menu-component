@@ -11,3 +11,4 @@ dump.rdb
 hello.yml
 newrelic_agent.log
 newrelic.js
+public/app*.js
